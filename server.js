@@ -42,27 +42,6 @@ app.post("/api/admin/login", (req, res) => {
     })
 })
 
-const verifyJWT = (req, res, next) => {
-    const token = req.headers["x-access-token"];
-
-    if (!token) {
-        res.send("Failed to give token");
-    } else {
-        jwt.verify(token, "jwtSecret", (err, decoded) => {
-            if (err) {
-                res.json({ auth: false, message: "Failed to Authenticate" });
-            } else {
-                res.userid = decoded.id;
-                next();
-            }
-        })
-    }
-}
-
-
-app.get("/isUserAuth", verifyJWT, (req, res) => {
-    res.send("You are successfully authenticated! ");
-});
 
 app.post("/api/admin/insert/project", (req, res) => {
     const projectTitle = req.body.projectTitle;

@@ -33,7 +33,7 @@ app.post("/api/admin/login", (req, res) => {
         if (result.length > 0) {
             const id = result[0].id
             const token = jwt.sign({ id }, "jwtSecret", {
-                expiresIn: 300,
+                expiresIn: 100,
             });
             res.json({ auth: true, token: token, result: result });
         } else {
@@ -97,7 +97,7 @@ app.get('/api/admin/get/selected/update/project/:id', (req, res) => {
     })
 })
 
-app.put('/api/admin/update/featured/:id', (req, res) => {
+app.put('/api/admin/update/home/section/:id', (req, res) => {
     const UpdatefeaturedId = req.params.id;
     const projectTitle = req.body.projectTitle;
     const projectDetail = req.body.projectDetail;
@@ -146,7 +146,6 @@ app.put('/api/admin/update/state/', (req, res) => {
         }
     })
 })
-
 
 
 
